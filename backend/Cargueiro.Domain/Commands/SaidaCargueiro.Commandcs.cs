@@ -5,13 +5,12 @@ using Cargueiro.Domain.Enums;
 
 namespace Cargueiro.Domain.Commands
 {
-    public class SaidaCargueiroCommand : Entidade
+    public class SaidaCargueiroCommand : Entidade, IValidavel
     {
         public SaidaCargueiroCommand(EClasseCargueiro classeCargueiro, DateTime dataSaida)
         {
             ClasseCargueiro = classeCargueiro;
             DataSaida = dataSaida;
-            this.Validar();
         }
 
         public EClasseCargueiro ClasseCargueiro { get; private set; }

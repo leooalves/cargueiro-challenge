@@ -4,14 +4,8 @@ using Cargueiro.Domain.Enums;
 
 namespace Cargueiro.Domain.Entidades
 {
-    public class MovimentacaoCargueiro : Entidade
+    public class MovimentacaoCargueiro : Entidade, IValidavel
     {
-        public MovimentacaoCargueiro(EClasseCargueiro classeCargueiro, DateTime dataSaida)
-        {
-            ClasseCargueiro = classeCargueiro;
-            DataSaida = dataSaida;
-        }
-
         public EClasseCargueiro ClasseCargueiro { get; private set; }
         public DateTime DataRetorno { get; private set; }
         public DateTime DataSaida { get; private set; }
@@ -20,7 +14,23 @@ namespace Cargueiro.Domain.Entidades
 
         public void Validar()
         {
-            this.AddNotifications(new MovimentacaoCargueiroValidacao(this));
+            this.AddNotifications(new RetornoMovimentacaoCargueiroValidacao(this));
+            this.AddNotifications(new SaidaMovimentacaoCargueiroValidacao(this));
+        }
+
+        public void RegistraRetorno(DateTime dataRetorno, ETipoMineral tipoMineralObtido, decimal qtdMaterialObtidoEmQuilos)
+        {
+            DataRetorno = dataRetorno;
+            TipoMineralObtido = tipoMineralObtido;
+            QtdMaterialObtidoEmQuilos = qtdMaterialObtidoEmQuilos;
+            this.AddNotifications(new RetornoMovimentacaoCargueiroValidacao(this));
+        }
+
+        public void RegistraSaida(EClasseCargueiro classeCargueiro, DateTime dataSaida)
+        {
+            ClasseCargueiro = classeCargueiro;
+            DataSaida = dataSaida;
+            this.AddNotifications(new SaidaMovimentacaoCargueiroValidacao(this));
         }
     }
 }

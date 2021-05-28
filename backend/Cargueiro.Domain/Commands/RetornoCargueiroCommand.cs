@@ -5,7 +5,7 @@ using Cargueiro.Domain.Enums;
 
 namespace Cargueiro.Domain.Commands
 {
-    public class RetornoCargueiroCommand : Entidade
+    public class RetornoCargueiroCommand : Entidade, IValidavel
     {
         public RetornoCargueiroCommand(EClasseCargueiro classeCargueiro, DateTime dataRetorno, ETipoMineral tipoMineralObtido, decimal qtdMaterialObtidoEmQuilos)
         {
@@ -13,7 +13,6 @@ namespace Cargueiro.Domain.Commands
             DataRetorno = dataRetorno;
             TipoMineralObtido = tipoMineralObtido;
             QtdMaterialObtidoEmQuilos = qtdMaterialObtidoEmQuilos;
-            this.Validar();
         }
 
         public EClasseCargueiro ClasseCargueiro { get; private set; }
