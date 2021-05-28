@@ -43,24 +43,25 @@ namespace Cargueiro.Domain.Handlers
         {
             //cria o objeto de RetornoCargueiro
             //valida - fail fast validation
-            var retornoCargueiro = new MovimentacaoCargueiro(EClasseCargueiro.Classe_I, DateTime.Now, ETipoMineral.Tipo_A, 10);
-            if (!retornoCargueiro.IsValid)
-                return new RespostaPadrao { Sucesso = false, Mensagem = "Requisicao Incorreta", Dados = retornoCargueiro.Notifications };
+            // var retornoCargueiro = new MovimentacaoCargueiro(EClasseCargueiro.Classe_I, DateTime.Now, ETipoMineral.Tipo_A, 10);
+            // if (!retornoCargueiro.IsValid)
+            //     return new RespostaPadrao { Sucesso = false, Mensagem = "Requisicao Incorreta", Dados = retornoCargueiro.Notifications };
 
 
-            //verifica se tem cargueiro desse tipo para retornar        
-            var frotaCargueiro = _frotaCargueiroRepositorio.RetornaFrota(EClasseCargueiro.Classe_I);
-            if (frotaCargueiro.NaoExisteCargueiroEmViagem)
-                return new RespostaPadrao { Sucesso = false, Mensagem = "Não há cargueiros dessa classe em viagem" };
+            // //verifica se tem cargueiro desse tipo para retornar        
+            // var frotaCargueiro = _frotaCargueiroRepositorio.RetornaFrota(EClasseCargueiro.Classe_I);
+            // if (frotaCargueiro.NaoExisteCargueiroEmViagem)
+            //     return new RespostaPadrao { Sucesso = false, Mensagem = "Não há cargueiros dessa classe em viagem" };
 
-            //persiste no bd informando o retorno
-            _movimentacaoCargueiroRepositorio.Salva(retornoCargueiro);
+            // //persiste no bd informando o retorno
+            // _movimentacaoCargueiroRepositorio.Salva(retornoCargueiro);
 
-            //atualiza a quantidade na frota disponivel
-            frotaCargueiro.RegistraRetornoFrota();
-            _frotaCargueiroRepositorio.AtualizaFrota(frotaCargueiro);
+            // //atualiza a quantidade na frota disponivel
+            // frotaCargueiro.RegistraRetornoFrota();
+            // _frotaCargueiroRepositorio.AtualizaFrota(frotaCargueiro);
 
-            return new RespostaPadrao { Sucesso = true, Mensagem = "Retorno do cargueiro realizado com sucesso", Dados = retornoCargueiro }; ;
+            // return new RespostaPadrao { Sucesso = true, Mensagem = "Retorno do cargueiro realizado com sucesso", Dados = retornoCargueiro }; ;
+            return null;
         }
 
     }
