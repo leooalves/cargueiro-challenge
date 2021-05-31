@@ -1,6 +1,6 @@
-namespace Cargueiro.Domain.Handlers
+namespace Cargueiro.Domain.Commands
 {
-    public class RespostaPadrao
+    public class RespostaPadrao : IResposta
     {
         public bool Sucesso { get; set; }
         public string Mensagem { get; set; }

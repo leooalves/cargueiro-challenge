@@ -22,6 +22,10 @@ namespace Cargueiro.Domain.Infra.Contexts
             modelBuilder.Entity<MovimentacaoCargueiro>().Property(x => x.DataRetorno);
             modelBuilder.Entity<MovimentacaoCargueiro>().HasIndex(x => x.DataSaida);
             modelBuilder.Entity<MovimentacaoCargueiro>().Property(x => x.TipoMineralObtido).HasColumnType("int");
+            modelBuilder.Entity<MovimentacaoCargueiro>().Ignore(x => x.Notifications);
+            modelBuilder.Entity<MovimentacaoCargueiro>().Ignore(x => x.IsValid);
+
+            base.OnModelCreating(modelBuilder);
         }
 
     }

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Cargueiro.Domain.Entidades;
 
 namespace Cargueiro.Domain.Repositorios
@@ -5,6 +7,8 @@ namespace Cargueiro.Domain.Repositorios
     public interface IMovimentacaoCargueiroRepositorio
     {
         void Salva(MovimentacaoCargueiro movimentacao);
-        MovimentacaoCargueiro RetornaMovimentacao();
+        Task<MovimentacaoCargueiro> RetornaMovimentacao();
+
+        Task<IEnumerable<MovimentacaoCargueiro>> RetornaMovimentacoes(int ano, int mes);
     }
 }

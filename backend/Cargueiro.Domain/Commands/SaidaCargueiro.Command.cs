@@ -2,10 +2,11 @@ using System;
 using Cargueiro.Domain.Commands.Validacao;
 using Cargueiro.Domain.Entidades;
 using Cargueiro.Domain.Enums;
+using Flunt.Notifications;
 
 namespace Cargueiro.Domain.Commands
 {
-    public class SaidaCargueiroCommand : Entidade, IValidavel
+    public class SaidaCargueiroCommand : Notifiable<Notification>, ICommand
     {
         public SaidaCargueiroCommand(EClasseCargueiro classeCargueiro, DateTime dataSaida)
         {

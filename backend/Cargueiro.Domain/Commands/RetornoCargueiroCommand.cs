@@ -2,10 +2,11 @@ using System;
 using Cargueiro.Domain.Commands.Validacao;
 using Cargueiro.Domain.Entidades;
 using Cargueiro.Domain.Enums;
+using Flunt.Notifications;
 
 namespace Cargueiro.Domain.Commands
 {
-    public class RetornoCargueiroCommand : Entidade, IValidavel
+    public class RetornoCargueiroCommand : Notifiable<Notification>, ICommand
     {
         public RetornoCargueiroCommand(EClasseCargueiro classeCargueiro, DateTime dataRetorno, ETipoMineral tipoMineralObtido, decimal qtdMaterialObtidoEmQuilos)
         {
