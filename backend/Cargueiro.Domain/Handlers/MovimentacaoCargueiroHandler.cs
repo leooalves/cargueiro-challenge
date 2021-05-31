@@ -25,7 +25,7 @@ namespace Cargueiro.Domain.Handlers
                 return new RespostaPadrao { Sucesso = false, Mensagem = "Requisicao Incorreta", Dados = saidaCargueiroCommand.Notifications };
 
             //verifica se ainda tem cargueiros disponiveis desse tipo para sair na frota
-            var frotaCargueiro = await _frotaCargueiroRepositorio.RetornaFrota(EClasseCargueiro.Classe_I);
+            var frotaCargueiro = await _frotaCargueiroRepositorio.RetornaFrota(saidaCargueiroCommand.ClasseCargueiro);
             if (frotaCargueiro.NaoExisteCargueiroDisponivel)
                 return new RespostaPadrao { Sucesso = false, Mensagem = "Não há cargueiros dessa classe disponíveis para sair" };
 
@@ -58,7 +58,7 @@ namespace Cargueiro.Domain.Handlers
                 return new RespostaPadrao { Sucesso = false, Mensagem = "Não há cargueiros dessa classe em viagem" };
 
             //Busca o registro com a saída do cargueiro
-            var movimentacaoCargueiro = await _movimentacaoCargueiroRepositorio.RetornaMovimentacao();
+            var movimentacaoCargueiro = await _movimentacaoCargueiroRepositorio.RetornaMovimentacao(retornoCargueiroCommand.Id);
             movimentacaoCargueiro.RegistraRetorno(
                 retornoCargueiroCommand.DataRetorno,
                 retornoCargueiroCommand.TipoMineralObtido,

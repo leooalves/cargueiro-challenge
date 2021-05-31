@@ -1,6 +1,5 @@
 using System;
 using Cargueiro.Domain.Commands.Validacao;
-using Cargueiro.Domain.Entidades;
 using Cargueiro.Domain.Enums;
 using Flunt.Notifications;
 
@@ -16,6 +15,7 @@ namespace Cargueiro.Domain.Commands
             QtdMaterialObtidoEmQuilos = qtdMaterialObtidoEmQuilos;
         }
 
+        public string Id { get; private set; }
         public EClasseCargueiro ClasseCargueiro { get; private set; }
         public DateTime DataRetorno { get; private set; }
         public ETipoMineral TipoMineralObtido { get; private set; }

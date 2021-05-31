@@ -1,3 +1,6 @@
+using AutoMapper;
+using Cargueiro.Domain.Api.Models;
+using Cargueiro.Domain.Entidades;
 using Cargueiro.Domain.Handlers;
 using Cargueiro.Domain.Infra.Contexts;
 using Cargueiro.Domain.Infra.Repositorios;
@@ -35,6 +38,13 @@ namespace Cargueiro.Domain.Api
             services.AddScoped<MovimentacaoCargueiroHandler, MovimentacaoCargueiroHandler>();
             services.AddScoped<IFrotaCargueiroRepositorio, FrotaCargueiroRepositorio>();
             services.AddScoped<IMovimentacaoCargueiroRepositorio, MovimentacaoCargueiroRepositorio>();
+
+            var config = new AutoMapper.MapperConfiguration(cfg =>
+           {
+               cfg.CreateMap<MovimentacaoCargueiroViewModel, MovimentacaoCargueiro>();
+           });
+            IMapper mapper = config.CreateMapper();
+            services.AddSingleton(mapper);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -36,8 +36,9 @@ namespace Cargueiro.Domain.Entidades
         {
             if (QuantidadeDisponivel > 0)
             {
-                QuantidadeDisponivel = QuantidadeDisponivel--;
-                QuantidadeEmViagem = QuantidadeEmViagem++;
+                QuantidadeDisponivel = --QuantidadeDisponivel;
+                QuantidadeEmViagem = ++QuantidadeEmViagem;
+                DataUltimaAtualizacao = DateTime.Now;
             }
 
         }
@@ -45,9 +46,11 @@ namespace Cargueiro.Domain.Entidades
         {
             if (QuantidadeEmViagem > 0)
             {
-                QuantidadeEmViagem = QuantidadeEmViagem--;
-                QuantidadeDisponivel = QuantidadeDisponivel++;
+                QuantidadeEmViagem = --QuantidadeEmViagem;
+                QuantidadeDisponivel = ++QuantidadeDisponivel;
+                DataUltimaAtualizacao = DateTime.Now;
             }
+
         }
     }
 }

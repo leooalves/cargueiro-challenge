@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Cargueiro.Domain.Entidades;
 using Cargueiro.Domain.Repositorios;
-using Cargueiro.Domain.Infra.Repositorios;
+using AutoMapper;
 
 namespace Cargueiro.Domain.Api.Controllers
 {
@@ -15,26 +15,46 @@ namespace Cargueiro.Domain.Api.Controllers
     {
         private readonly MovimentacaoCargueiroHandler _handler;
         private readonly IMovimentacaoCargueiroRepositorio _repositorio;
-        public MovimentacaoCargueiroController(MovimentacaoCargueiroHandler handler, IMovimentacaoCargueiroRepositorio repositorio)
+        private readonly IFrotaCargueiroRepositorio _frotaRepositorio;
+        private readonly IMapper _mapper;
+        public MovimentacaoCargueiroController(
+            MovimentacaoCargueiroHandler handler,
+            IMovimentacaoCargueiroRepositorio repositorio,
+            IFrotaCargueiroRepositorio frotaCargueiroRepositorio,
+            IMapper mapper)
         {
             _handler = handler;
             _repositorio = repositorio;
+            _mapper = mapper;
+            _frotaRepositorio = frotaCargueiroRepositorio;
         }
 
         [HttpGet]
-        [Route("")]
-        public async Task<MovimentacaoCargueiro> Movimentacao()
+        [Route("CargaInicial")]
+        public void CargaInicial()
         {
-            return await _repositorio.RetornaMovimentacao();
+            _frotaRepositorio.CargaInicialFrota();
+        }
+        [HttpGet]
+        [Route("Frotas")]
+        public IEnumerable<FrotaCargueiro> Frotas()
+        {
+            return _frotaRepositorio.TodasFrotas();
         }
 
         [HttpGet]
         [Route("todas")]
-        public async Task<IEnumerable<MovimentacaoCargueiro>> Movimentacoes([FromQuery] int ano)
+        public async Task<IEnumerable<MovimentacaoCargueiro>> TodasMovimentacoes()
         {
-            return await _repositorio.RetornaMovimentacoes(2021, 05);
+            return await _repositorio.RetornaTodasMovimentacoes();
         }
 
+        [HttpGet]
+        [Route("paginado")]
+        public IResultadoPaginado<MovimentacaoCargueiro> MovimentacoesPaginado(int ano, int mes, int numeroPagina = 1)
+        {
+            return _repositorio.RetornaMovimentacoesPaginado(numeroPagina, 10, ano, mes);
+        }
 
         [HttpPost]
         [Route("saida/")]
