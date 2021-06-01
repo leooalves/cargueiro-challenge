@@ -36,7 +36,7 @@ namespace Cargueiro.Domain.Handlers
                 return new RespostaPadrao { Sucesso = false, Mensagem = "Requisicao Incorreta", Dados = movimentacaoCargueiro.Notifications };
 
             //persiste no bd informando a saida
-            _movimentacaoCargueiroRepositorio.Salva(movimentacaoCargueiro);
+            _movimentacaoCargueiroRepositorio.Cria(movimentacaoCargueiro);
 
             //persiste no bd informando a baixa na frota
             frotaCargueiro.RegistraBaixaFrota();
@@ -68,7 +68,7 @@ namespace Cargueiro.Domain.Handlers
                 return new RespostaPadrao { Sucesso = false, Mensagem = "Requisicao Incorreta", Dados = movimentacaoCargueiro.Notifications };
 
             //persiste no bd informando o retorno
-            _movimentacaoCargueiroRepositorio.Salva(movimentacaoCargueiro);
+            _movimentacaoCargueiroRepositorio.Atualiza(movimentacaoCargueiro);
 
             //atualiza a quantidade na frota disponivel
             frotaCargueiro.RegistraRetornoFrota();

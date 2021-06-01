@@ -66,9 +66,15 @@ namespace Cargueiro.Domain.Infra.Repositorios
             return result;
         }
 
-        public void Salva(MovimentacaoCargueiro movimentacao)
+        public void Cria(MovimentacaoCargueiro movimentacao)
         {
-            _context.MovimentacoesCargueiros.Add(movimentacao);
+            _context.Add(movimentacao);
+            _context.SaveChanges();
+        }
+
+        public void Atualiza(MovimentacaoCargueiro movimentacao)
+        {
+            _context.Entry(movimentacao).State = EntityState.Modified;
             _context.SaveChanges();
         }
     }
