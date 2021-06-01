@@ -12,6 +12,6 @@ namespace Cargueiro.Domain.Repositorios
         Task<MovimentacaoCargueiro> RetornaMovimentacao(string id);
         Task<IEnumerable<MovimentacaoCargueiro>> RetornaTodasMovimentacoes();
         Task<IEnumerable<MovimentacaoCargueiro>> RetornaMovimentacoes(int ano, int mes);
-        IResultadoPaginado<MovimentacaoCargueiro> RetornaMovimentacoesPaginado(int page, int pageSize, int ano, int mes);
+        ResultadoPaginado<MovimentacaoCargueiro> RetornaMovimentacoesPaginado(int page, int pageSize, int ano, int mes);
     }
 }

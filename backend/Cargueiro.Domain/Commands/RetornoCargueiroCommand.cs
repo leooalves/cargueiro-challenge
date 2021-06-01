@@ -15,7 +15,7 @@ namespace Cargueiro.Domain.Commands
             QtdMaterialObtidoEmQuilos = qtdMaterialObtidoEmQuilos;
         }
 
-        public string Id { get; set; }
+        public string Id { get; private set; }
         public EClasseCargueiro ClasseCargueiro { get; private set; }
         public DateTime DataRetorno { get; private set; }
         public ETipoMineral TipoMineralObtido { get; private set; }

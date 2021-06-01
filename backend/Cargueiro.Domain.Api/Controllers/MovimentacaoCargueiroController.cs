@@ -15,31 +15,15 @@ namespace Cargueiro.Domain.Api.Controllers
     {
         private readonly MovimentacaoCargueiroHandler _handler;
         private readonly IMovimentacaoCargueiroRepositorio _repositorio;
-        private readonly IFrotaCargueiroRepositorio _frotaRepositorio;
         private readonly IMapper _mapper;
         public MovimentacaoCargueiroController(
             MovimentacaoCargueiroHandler handler,
             IMovimentacaoCargueiroRepositorio repositorio,
-            IFrotaCargueiroRepositorio frotaCargueiroRepositorio,
             IMapper mapper)
         {
             _handler = handler;
             _repositorio = repositorio;
             _mapper = mapper;
-            _frotaRepositorio = frotaCargueiroRepositorio;
-        }
-
-        [HttpGet]
-        [Route("CargaInicial")]
-        public void CargaInicial()
-        {
-            _frotaRepositorio.CargaInicialFrota();
-        }
-        [HttpGet]
-        [Route("Frotas")]
-        public IEnumerable<FrotaCargueiro> Frotas()
-        {
-            return _frotaRepositorio.TodasFrotas();
         }
 
         [HttpGet]
@@ -51,7 +35,7 @@ namespace Cargueiro.Domain.Api.Controllers
 
         [HttpGet]
         [Route("paginado")]
-        public IResultadoPaginado<MovimentacaoCargueiro> MovimentacoesPaginado(int ano, int mes, int numeroPagina = 1)
+        public ResultadoPaginado<MovimentacaoCargueiro> MovimentacoesPaginado(int ano, int mes, int numeroPagina = 1)
         {
             return _repositorio.RetornaMovimentacoesPaginado(numeroPagina, 10, ano, mes);
         }

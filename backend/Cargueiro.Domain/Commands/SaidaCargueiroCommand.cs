@@ -1,6 +1,5 @@
 using System;
 using Cargueiro.Domain.Commands.Validacao;
-using Cargueiro.Domain.Entidades;
 using Cargueiro.Domain.Enums;
 using Flunt.Notifications;
 

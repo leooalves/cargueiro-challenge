@@ -7,11 +7,9 @@ namespace Cargueiro.Domain.Repositorios
 {
     public interface IFrotaCargueiroRepositorio
     {
-
         void CargaInicialFrota();
-        Task<FrotaCargueiro> RetornaFrota(EClasseCargueiro classeCargueiro);
+        Task<FrotaCargueiro> BuscaFrotaPorClasse(EClasseCargueiro classeCargueiro);
         void AtualizaFrota(FrotaCargueiro frotaCargueiro);
-
         IEnumerable<FrotaCargueiro> TodasFrotas();
     }
 

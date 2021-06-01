@@ -32,7 +32,7 @@ namespace Cargueiro.Domain.Infra.Repositorios
             _context.SaveChanges();
         }
 
-        public Task<FrotaCargueiro> RetornaFrota(EClasseCargueiro classeCargueiro)
+        public Task<FrotaCargueiro> BuscaFrotaPorClasse(EClasseCargueiro classeCargueiro)
         {
             return _context.FrotaCargueiros.FirstOrDefaultAsync(x => x.ClasseCargueiro == classeCargueiro);
         }

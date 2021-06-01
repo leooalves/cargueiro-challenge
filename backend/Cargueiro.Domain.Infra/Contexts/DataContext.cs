@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Cargueiro.Domain.Entidades;
 using Cargueiro.Domain.Enums;
 using System;
+using Flunt.Notifications;
 
 namespace Cargueiro.Domain.Infra.Contexts
 {
@@ -27,6 +28,8 @@ namespace Cargueiro.Domain.Infra.Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Ignore<Notification>();
+
             modelBuilder.Entity<MovimentacaoCargueiro>().ToTable("movimentacaoCargueiro");
             modelBuilder.Entity<MovimentacaoCargueiro>().Property(x => x.Id);
             modelBuilder.Entity<MovimentacaoCargueiro>().Property(x => x.QtdMaterialObtidoEmQuilos).HasColumnType("decimal(10,2)");

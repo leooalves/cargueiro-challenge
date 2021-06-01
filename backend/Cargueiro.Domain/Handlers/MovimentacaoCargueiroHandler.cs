@@ -1,4 +1,3 @@
-using System;
 using Cargueiro.Domain.Entidades;
 using Cargueiro.Domain.Commands;
 using Cargueiro.Domain.Enums;
@@ -11,7 +10,9 @@ namespace Cargueiro.Domain.Handlers
     {
         private readonly IFrotaCargueiroRepositorio _frotaCargueiroRepositorio;
         private readonly IMovimentacaoCargueiroRepositorio _movimentacaoCargueiroRepositorio;
-        public MovimentacaoCargueiroHandler(IFrotaCargueiroRepositorio frotaCargueiroRepositorio, IMovimentacaoCargueiroRepositorio movimentacaoCargueiroRepositorio)
+        public MovimentacaoCargueiroHandler(
+            IFrotaCargueiroRepositorio frotaCargueiroRepositorio,
+            IMovimentacaoCargueiroRepositorio movimentacaoCargueiroRepositorio)
         {
             _frotaCargueiroRepositorio = frotaCargueiroRepositorio;
             _movimentacaoCargueiroRepositorio = movimentacaoCargueiroRepositorio;
@@ -25,7 +26,7 @@ namespace Cargueiro.Domain.Handlers
                 return new RespostaPadrao { Sucesso = false, Mensagem = "Requisicao Incorreta", Dados = saidaCargueiroCommand.Notifications };
 
             //verifica se ainda tem cargueiros disponiveis desse tipo para sair na frota
-            var frotaCargueiro = await _frotaCargueiroRepositorio.RetornaFrota(saidaCargueiroCommand.ClasseCargueiro);
+            var frotaCargueiro = await _frotaCargueiroRepositorio.BuscaFrotaPorClasse(saidaCargueiroCommand.ClasseCargueiro);
             if (frotaCargueiro.NaoExisteCargueiroDisponivel)
                 return new RespostaPadrao { Sucesso = false, Mensagem = "Não há cargueiros dessa classe disponíveis para sair" };
 
@@ -53,7 +54,7 @@ namespace Cargueiro.Domain.Handlers
                 return new RespostaPadrao { Sucesso = false, Mensagem = "Requisicao Incorreta", Dados = retornoCargueiroCommand.Notifications };
 
             //verifica se tem cargueiro desse tipo para retornar        
-            var frotaCargueiro = await _frotaCargueiroRepositorio.RetornaFrota(EClasseCargueiro.Classe_I);
+            var frotaCargueiro = await _frotaCargueiroRepositorio.BuscaFrotaPorClasse(EClasseCargueiro.Classe_I);
             if (frotaCargueiro.NaoExisteCargueiroEmViagem)
                 return new RespostaPadrao { Sucesso = false, Mensagem = "Não há cargueiros dessa classe em viagem" };
 

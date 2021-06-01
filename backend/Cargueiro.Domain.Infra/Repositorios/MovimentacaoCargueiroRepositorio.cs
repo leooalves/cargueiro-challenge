@@ -36,7 +36,7 @@ namespace Cargueiro.Domain.Infra.Repositorios
                 .ToListAsync();
         }
 
-        public IResultadoPaginado<MovimentacaoCargueiro> RetornaMovimentacoesPaginado(int numeroPagina, int tamanhoPagina, int ano, int mes)
+        public ResultadoPaginado<MovimentacaoCargueiro> RetornaMovimentacoesPaginado(int numeroPagina, int tamanhoPagina, int ano, int mes)
         {
             var results = from x in _context.MovimentacoesCargueiros
                           where x.DataRetorno != null
@@ -49,7 +49,7 @@ namespace Cargueiro.Domain.Infra.Repositorios
             return result;
         }
 
-        private static IResultadoPaginado<MovimentacaoCargueiro> RetornaResultadoPaginadoDaQuery(
+        private static ResultadoPaginado<MovimentacaoCargueiro> RetornaResultadoPaginadoDaQuery(
             IQueryable<MovimentacaoCargueiro> query,
             int numeroPagina,
             int tamanhoPagina)

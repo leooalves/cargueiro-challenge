@@ -8,7 +8,7 @@ namespace Cargueiro.Domain.Commands.Validacao
         public RetornoCargueiroValidacao(RetornoCargueiroCommand movimentacao)
         {
             Requires()
-                .AreNotEquals(movimentacao.DataRetorno.DayOfWeek, DayOfWeek.Sunday, "DataSaida", "Não pode ocorrer movimentação aos domingos");
+                .AreNotEquals(movimentacao.DataRetorno.DayOfWeek, DayOfWeek.Sunday, "DataRetorno", "Não pode ocorrer movimentação aos domingos");
         }
     }
 }
