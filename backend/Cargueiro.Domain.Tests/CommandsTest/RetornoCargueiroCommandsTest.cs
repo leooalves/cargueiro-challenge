@@ -14,6 +14,12 @@ namespace Cargueiro.Domain.Tests.Commands
 
         private readonly RetornoCargueiroCommand _retornoCargueiroValido = new RetornoCargueiroCommand(EClasseCargueiro.Classe_I, new DateTime(2021, 05, 28, 20, 20, 0), ETipoMineral.Tipo_A, 10);
 
+        public RetornoCargueiroCommandsTest()
+        {
+            _retornoCargueiroDomingo.Validar();
+            _retornoCargueiroValido.Validar();
+        }
+
         [TestMethod]
         public void Dada_uma_retorno_no_domingo_deve_ser_invalido()
         {

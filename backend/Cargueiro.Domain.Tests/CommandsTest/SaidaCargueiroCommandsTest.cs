@@ -13,10 +13,17 @@ namespace Cargueiro.Domain.Tests.Commands
         private readonly SaidaCargueiroCommand _saidaCargueiroDomingo = new SaidaCargueiroCommand(EClasseCargueiro.Classe_I, new DateTime(2021, 05, 30));
         private readonly SaidaCargueiroCommand _saidaCargueiroValida = new SaidaCargueiroCommand(EClasseCargueiro.Classe_I, new DateTime(2021, 05, 28, 10, 20, 0));
 
+        public SaidaCargueiroCommandsTest()
+        {
+            _saidaCargueiroAntes08.Validar();
+            _saidaCargueiroDomingo.Validar();
+            _saidaCargueiroValida.Validar();
+        }
+
         [TestMethod]
         public void Dada_uma_saida_antes_das_08_AM_ela_deve_ser_invalida()
         {
-            _saidaCargueiroAntes08.Validar();
+            
             Assert.AreEqual(_saidaCargueiroAntes08.IsValid, false);
         }
 
