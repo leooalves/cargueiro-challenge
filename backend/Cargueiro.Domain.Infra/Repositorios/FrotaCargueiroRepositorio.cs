@@ -16,15 +16,7 @@ namespace Cargueiro.Domain.Infra.Repositorios
         public FrotaCargueiroRepositorio(DataContext context)
         {
             _context = context;
-        }
-        public void CargaInicialFrota()
-        {
-            _context.FrotaCargueiros.Add(new FrotaCargueiro(EClasseCargueiro.Classe_I, 15, 0, DateTime.Now));
-            _context.FrotaCargueiros.Add(new FrotaCargueiro(EClasseCargueiro.Classe_II, 10, 0, DateTime.Now));
-            _context.FrotaCargueiros.Add(new FrotaCargueiro(EClasseCargueiro.Classe_III, 3, 0, DateTime.Now));
-            _context.FrotaCargueiros.Add(new FrotaCargueiro(EClasseCargueiro.Classe_IV, 2, 0, DateTime.Now));
-            _context.SaveChanges();
-        }
+        }  
 
         public void AtualizaFrota(FrotaCargueiro frotaCargueiro)
         {

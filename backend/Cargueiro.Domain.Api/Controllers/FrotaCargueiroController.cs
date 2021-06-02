@@ -15,13 +15,7 @@ namespace Cargueiro.Domain.Api.Controllers
         {
             _frotaRepositorio = frotaCargueiroRepositorio;
         }
-
-        [HttpGet]
-        [Route("cargaInicial")]
-        public void CargaInicial()
-        {
-            _frotaRepositorio.CargaInicialFrota();
-        }
+    
         [HttpGet]
         [Route("")]
         public IEnumerable<FrotaCargueiro> Todas()

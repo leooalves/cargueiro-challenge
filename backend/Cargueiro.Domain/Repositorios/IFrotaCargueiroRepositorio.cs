@@ -9,8 +9,7 @@ namespace Cargueiro.Domain.Repositorios
     {
         IEnumerable<FrotaCargueiro> TodasFrotas();
         Task<FrotaCargueiro> BuscaFrotaPorClasse(EClasseCargueiro classeCargueiro);
-
-        void CargaInicialFrota();
+        
         void AtualizaFrota(FrotaCargueiro frotaCargueiro);
 
     }
