@@ -1,4 +1,4 @@
-using Cargueiro.Domain.Application.Repositorios;
+using Cargueiro.Domain.Repositorios;
 using Cargueiro.Domain.Entidades;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;

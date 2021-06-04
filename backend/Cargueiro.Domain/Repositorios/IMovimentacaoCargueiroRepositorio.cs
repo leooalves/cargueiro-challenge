@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Cargueiro.Domain.Comum;
 using System.Threading.Tasks;
 
-namespace Cargueiro.Domain.Application.Repositorios
+namespace Cargueiro.Domain.Repositorios
 {
     public interface IMovimentacaoCargueiroRepositorio : IRepositorio<MovimentacaoCargueiro>
     {

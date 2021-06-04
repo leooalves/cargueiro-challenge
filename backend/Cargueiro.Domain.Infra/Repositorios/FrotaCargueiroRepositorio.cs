@@ -1,4 +1,4 @@
-using Cargueiro.Domain.Application.Repositorios;
+using Cargueiro.Domain.Repositorios;
 using Cargueiro.Domain.Entidades;
 using Cargueiro.Domain.Enums;
 using Cargueiro.Domain.Infra.Contexts;
@@ -22,7 +22,7 @@ namespace Cargueiro.Domain.Infra.Repositorios
 
         public void AtualizaFrota(FrotaCargueiro frotaCargueiro)
         {
-            _context.Entry(frotaCargueiro).State = EntityState.Modified;
+            _context.Entry(frotaCargueiro).State = EntityState.Modified;            
         }
 
         public Task<FrotaCargueiro> BuscaFrotaPorClasse(EClasseCargueiro classeCargueiro)

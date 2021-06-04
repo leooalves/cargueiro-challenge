@@ -2,7 +2,7 @@ using Cargueiro.Domain.Enums;
 using Flunt.Notifications;
 using System;
 
-namespace Cargueiro.Domain.Application.Commands
+namespace Cargueiro.Domain.Api.Application.Commands
 {
     public class RetornoCargueiroCommand : Notifiable<Notification>, ICommand
     {

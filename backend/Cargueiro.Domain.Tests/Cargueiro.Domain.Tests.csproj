@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Cargueiro.Domain.Api\Cargueiro.Domain.Api.csproj" />
     <ProjectReference Include="..\Cargueiro.Domain\Cargueiro.Domain.csproj" />
   </ItemGroup>
 

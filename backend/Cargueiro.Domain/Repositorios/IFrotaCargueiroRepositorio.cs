@@ -4,7 +4,7 @@ using Cargueiro.Domain.Comum;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Cargueiro.Domain.Application.Repositorios
+namespace Cargueiro.Domain.Repositorios
 {
     public interface IFrotaCargueiroRepositorio : IRepositorio<FrotaCargueiro>
     {

@@ -1,7 +1,7 @@
 using Cargueiro.Domain.Enums;
 using System;
 
-namespace Cargueiro.Domain.Api.Models
+namespace Cargueiro.Domain.Api.Application.Queries
 {
     public class MovimentacaoCargueiroViewModel
     {

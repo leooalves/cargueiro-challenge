@@ -1,10 +1,10 @@
-using Cargueiro.Domain.Application.Commands;
-using Cargueiro.Domain.Application.Repositorios;
+using Cargueiro.Domain.Api.Application.Commands;
+using Cargueiro.Domain.Repositorios;
 using Cargueiro.Domain.Entidades;
 using Cargueiro.Domain.Enums;
 using System.Threading.Tasks;
 
-namespace Cargueiro.Domain.Application.Handlers
+namespace Cargueiro.Domain.Api.Application.Handlers
 {
     public class MovimentacaoCargueiroHandler : IHandler<SaidaCargueiroCommand>, IHandler<RetornoCargueiroCommand>
     {

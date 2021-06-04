@@ -1,7 +1,6 @@
 using AutoMapper;
-using Cargueiro.Domain.Api.Models;
-using Cargueiro.Domain.Application.Handlers;
-using Cargueiro.Domain.Application.Repositorios;
+using Cargueiro.Domain.Api.Application.Handlers;
+using Cargueiro.Domain.Repositorios;
 using Cargueiro.Domain.Entidades;
 using Cargueiro.Domain.Infra.Contexts;
 using Cargueiro.Domain.Infra.Repositorios;
@@ -12,6 +11,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Cargueiro.Domain.Api.Application.Queries;
+using System.Collections.Generic;
 
 namespace Cargueiro.Domain.Api
 {
@@ -36,12 +37,14 @@ namespace Cargueiro.Domain.Api
 
             services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("Database"));
             services.AddScoped<MovimentacaoCargueiroHandler, MovimentacaoCargueiroHandler>();
+            services.AddScoped<MovimentacaoCargueiroQueries, MovimentacaoCargueiroQueries>();
             services.AddScoped<IFrotaCargueiroRepositorio, FrotaCargueiroRepositorio>();
             services.AddScoped<IMovimentacaoCargueiroRepositorio, MovimentacaoCargueiroRepositorio>();
 
             var config = new AutoMapper.MapperConfiguration(cfg =>
            {
-               cfg.CreateMap<MovimentacaoCargueiroViewModel, MovimentacaoCargueiro>();
+               cfg.CreateMap<MovimentacaoCargueiro, MovimentacaoCargueiroViewModel>();
+               cfg.CreateMap<MovimentacaoCargueiroViewModel, MovimentacaoCargueiro>();                            
            });
             IMapper mapper = config.CreateMapper();
             services.AddSingleton(mapper);

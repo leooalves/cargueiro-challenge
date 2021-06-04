@@ -1,5 +1,5 @@
 
-using Cargueiro.Domain.Application.Repositorios;
+using Cargueiro.Domain.Repositorios;
 using Cargueiro.Domain.Entidades;
 using Cargueiro.Domain.Infra.Contexts;
 using Cargueiro.Domain.Comum;

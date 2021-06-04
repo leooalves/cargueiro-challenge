@@ -1,5 +1,6 @@
 
 using Cargueiro.Domain.Enums;
+using Cargueiro.Domain.Api.Application.Commands;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 

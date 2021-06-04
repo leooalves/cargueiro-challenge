@@ -1,12 +1,13 @@
 using AutoMapper;
-using Cargueiro.Domain.Application.Commands;
-using Cargueiro.Domain.Application.Handlers;
-using Cargueiro.Domain.Application.Repositorios;
+using Cargueiro.Domain.Api.Application.Commands;
+using Cargueiro.Domain.Api.Application.Handlers;
+using Cargueiro.Domain.Repositorios;
 using Cargueiro.Domain.Entidades;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
+using Cargueiro.Domain.Api.Application.Queries;
 
 namespace Cargueiro.Domain.Api.Controllers
 {
@@ -16,15 +17,17 @@ namespace Cargueiro.Domain.Api.Controllers
     {
         private readonly MovimentacaoCargueiroHandler _handler;
         private readonly IMovimentacaoCargueiroRepositorio _repositorio;
-        private readonly IMapper _mapper;
+        private readonly MovimentacaoCargueiroQueries _queries;        
+
         public MovimentacaoCargueiroController(
             MovimentacaoCargueiroHandler handler,
             IMovimentacaoCargueiroRepositorio repositorio,
+            MovimentacaoCargueiroQueries queries,
             IMapper mapper)
         {
             _handler = handler;
-            _repositorio = repositorio;
-            _mapper = mapper;
+            _repositorio = repositorio;            
+            _queries = queries;
         }
 
         [HttpGet]
@@ -38,6 +41,18 @@ namespace Cargueiro.Domain.Api.Controllers
             return Ok(await _repositorio.RetornaTodasMovimentacoes());
         }
 
+        [HttpGet]
+        [Route("teste")]
+        [ProducesResponseType(typeof(IEnumerable<MovimentacaoCargueiroViewModel>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.Forbidden)]
+        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> Teste()
+        {
+            var movimentacoes = await _queries.RetornaMovimentacoesPorPeriodo(1, 1);
+            return Ok(movimentacoes);
+            //return Ok(await _repositorio.RetornaTodasMovimentacoes());
+        }
+      
 
         [HttpPost]
         [Route("saida/")]
