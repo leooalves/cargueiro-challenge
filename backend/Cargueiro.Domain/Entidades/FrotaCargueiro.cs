@@ -1,9 +1,10 @@
 using System;
 using Cargueiro.Domain.Enums;
+using Cargueiro.Domain.Entidades.Comum;
 
 namespace Cargueiro.Domain.Entidades
 {
-    public class FrotaCargueiro : Entidade
+    public class FrotaCargueiro : Entidade, IAggregateRoot
     {
         public FrotaCargueiro(EClasseCargueiro classeCargueiro, int quantidadeDisponivel, int quantidadeEmViagem, DateTime dataUltimaAtualizacao)
         {

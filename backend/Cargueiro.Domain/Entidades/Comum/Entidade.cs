@@ -1,7 +1,7 @@
 using System;
 using Flunt.Notifications;
 
-namespace Cargueiro.Domain.Entidades
+namespace Cargueiro.Domain.Entidades.Comum
 {
     public abstract class Entidade : Notifiable<Notification>
     {

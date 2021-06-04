@@ -43,6 +43,8 @@ namespace Cargueiro.Domain.Handlers
             frotaCargueiro.RegistraBaixaFrota();
             _frotaCargueiroRepositorio.AtualizaFrota(frotaCargueiro);
 
+            await _frotaCargueiroRepositorio.UnitOfWork.SaveChangesAsync();
+
             return new RespostaPadrao { Sucesso = true, Mensagem = "Saida registrada com sucesso", Dados = movimentacaoCargueiro };
         }
 
@@ -74,6 +76,8 @@ namespace Cargueiro.Domain.Handlers
             //atualiza a quantidade na frota disponivel
             frotaCargueiro.RegistraRetornoFrota();
             _frotaCargueiroRepositorio.AtualizaFrota(frotaCargueiro);
+
+            await _frotaCargueiroRepositorio.UnitOfWork.SaveChangesAsync();
 
             return new RespostaPadrao { Sucesso = true, Mensagem = "Retorno do cargueiro realizado com sucesso", Dados = movimentacaoCargueiro }; ;
         }

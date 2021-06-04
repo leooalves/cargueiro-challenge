@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Cargueiro.Domain.Entidades;
 using Cargueiro.Domain.Repositorios;
 using AutoMapper;
+using System.Net;
 
 namespace Cargueiro.Domain.Api.Controllers
 {
@@ -28,18 +29,16 @@ namespace Cargueiro.Domain.Api.Controllers
 
         [HttpGet]
         [Route("todas")]
-        public async Task<IEnumerable<MovimentacaoCargueiro>> TodasMovimentacoes()
-        {
-            return await _repositorio.RetornaTodasMovimentacoes();
+        [ProducesResponseType(typeof(IEnumerable<MovimentacaoCargueiro>),(int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.Forbidden)]
+        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> TodasMovimentacoes()
+        {            
+
+            return Ok(await _repositorio.RetornaTodasMovimentacoes());
         }
 
-        [HttpGet]
-        [Route("paginado")]
-        public ResultadoPaginado<MovimentacaoCargueiro> MovimentacoesPaginado(int ano, int mes, int numeroPagina = 1)
-        {
-            return _repositorio.RetornaMovimentacoesPaginado(numeroPagina, 10, ano, mes);
-        }
-
+ 
         [HttpPost]
         [Route("saida/")]
         public async Task<IResposta> RegistraSaidaCargueiro(SaidaCargueiroCommand command)

@@ -1,13 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using Cargueiro.Domain.Entidades;
-using Cargueiro.Domain.Enums;
-using System;
 using Flunt.Notifications;
 using Cargueiro.Domain.Infra.Mapeamentos;
+using Cargueiro.Domain.Repositorios;
 
 namespace Cargueiro.Domain.Infra.Contexts
 {
-    public class DataContext : DbContext
+    public class DataContext : DbContext, IUnitOfWork
     {
         public DataContext(DbContextOptions<DataContext> options)
             : base(options)
@@ -26,7 +25,7 @@ namespace Cargueiro.Domain.Infra.Contexts
             modelBuilder.ApplyConfiguration(new MovimentacaoCargueiroMap());
             modelBuilder.ApplyConfiguration(new FrotaCargueiroMap());
             
-        }
+        }        
 
     }
 }

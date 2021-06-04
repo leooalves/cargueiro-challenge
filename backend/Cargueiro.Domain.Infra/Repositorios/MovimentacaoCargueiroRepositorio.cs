@@ -17,6 +17,7 @@ namespace Cargueiro.Domain.Infra.Repositorios
         {
             _context = context;
         }
+        public IUnitOfWork UnitOfWork => _context;
 
         public Task<MovimentacaoCargueiro> RetornaMovimentacao(string id)
         {
@@ -36,46 +37,14 @@ namespace Cargueiro.Domain.Infra.Repositorios
                 .ToListAsync();
         }
 
-        public ResultadoPaginado<MovimentacaoCargueiro> RetornaMovimentacoesPaginado(int numeroPagina, int tamanhoPagina, int ano, int mes)
-        {
-            var results = from x in _context.MovimentacoesCargueiros
-                          where x.DataRetorno != null
-                              && x.DataRetorno.Value.Year == ano
-                              && x.DataRetorno.Value.Month == mes
-                          orderby x.DataSaida
-                          select x;
-
-            var result = RetornaResultadoPaginadoDaQuery(results, numeroPagina, tamanhoPagina);
-            return result;
-        }
-
-        private static ResultadoPaginado<MovimentacaoCargueiro> RetornaResultadoPaginadoDaQuery(
-            IQueryable<MovimentacaoCargueiro> query,
-            int numeroPagina,
-            int tamanhoPagina)
-        {
-            var result = new ResultadoPaginado<MovimentacaoCargueiro>();
-            result.PaginaAtual = numeroPagina;
-            result.TamanhoDaPagina = tamanhoPagina;
-            result.QuantidadeDeLinhas = query.Count();
-            var pageCount = (double)result.QuantidadeDeLinhas / tamanhoPagina;
-            result.QuantidaDePaginas = (int)System.Math.Ceiling(pageCount);
-            var skip = (numeroPagina - 1) * tamanhoPagina;
-            result.Resultados = query.Skip(skip).Take(tamanhoPagina).ToList();
-
-            return result;
-        }
-
         public void Cria(MovimentacaoCargueiro movimentacao)
         {
-            _context.Add(movimentacao);
-            _context.SaveChanges();
+            _context.Add(movimentacao);            
         }
 
         public void Atualiza(MovimentacaoCargueiro movimentacao)
         {
-            _context.Entry(movimentacao).State = EntityState.Modified;
-            _context.SaveChanges();
+            _context.Entry(movimentacao).State = EntityState.Modified;            
         }
     }
 }

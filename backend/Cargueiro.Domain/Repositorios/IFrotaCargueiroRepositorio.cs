@@ -5,7 +5,7 @@ using Cargueiro.Domain.Enums;
 
 namespace Cargueiro.Domain.Repositorios
 {
-    public interface IFrotaCargueiroRepositorio
+    public interface IFrotaCargueiroRepositorio : IRepositorio<FrotaCargueiro>
     {
         IEnumerable<FrotaCargueiro> TodasFrotas();
         Task<FrotaCargueiro> BuscaFrotaPorClasse(EClasseCargueiro classeCargueiro);

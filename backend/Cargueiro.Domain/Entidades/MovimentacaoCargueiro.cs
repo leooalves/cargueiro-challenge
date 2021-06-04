@@ -1,10 +1,11 @@
 using System;
 using Cargueiro.Domain.Enums;
 using Flunt.Validations;
+using Cargueiro.Domain.Entidades.Comum;
 
 namespace Cargueiro.Domain.Entidades
 {
-    public class MovimentacaoCargueiro : Entidade
+    public class MovimentacaoCargueiro : Entidade, IAggregateRoot
     {
         public EClasseCargueiro ClasseCargueiro { get; private set; }
         public DateTime DataSaida { get; private set; }

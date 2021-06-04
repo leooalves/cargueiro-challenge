@@ -16,12 +16,13 @@ namespace Cargueiro.Domain.Infra.Repositorios
         public FrotaCargueiroRepositorio(DataContext context)
         {
             _context = context;
-        }  
+        }
+
+        public IUnitOfWork UnitOfWork => _context;
 
         public void AtualizaFrota(FrotaCargueiro frotaCargueiro)
         {
-            _context.Entry(frotaCargueiro).State = EntityState.Modified;
-            _context.SaveChanges();
+            _context.Entry(frotaCargueiro).State = EntityState.Modified;            
         }
 
         public Task<FrotaCargueiro> BuscaFrotaPorClasse(EClasseCargueiro classeCargueiro)
