@@ -18,7 +18,7 @@ namespace Cargueiro.Domain.Infra.Mapeamentos
             builder.HasIndex(x => x.DataSaida);
             builder.Property(x => x.TipoMineralObtido).HasColumnType("int");
             builder.Ignore(x => x.Notifications);
-            builder.Ignore(x => x.IsValid);           
+            builder.Ignore(x => x.IsValid);
         }
     }
 }

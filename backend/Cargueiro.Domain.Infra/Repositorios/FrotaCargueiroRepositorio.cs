@@ -1,12 +1,12 @@
-using System;
-using System.Threading.Tasks;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
+using Cargueiro.Domain.Application.Repositorios;
 using Cargueiro.Domain.Entidades;
 using Cargueiro.Domain.Enums;
 using Cargueiro.Domain.Infra.Contexts;
-using Cargueiro.Domain.Repositorios;
+using Cargueiro.Domain.Comum;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Cargueiro.Domain.Infra.Repositorios
 {
@@ -22,7 +22,7 @@ namespace Cargueiro.Domain.Infra.Repositorios
 
         public void AtualizaFrota(FrotaCargueiro frotaCargueiro)
         {
-            _context.Entry(frotaCargueiro).State = EntityState.Modified;            
+            _context.Entry(frotaCargueiro).State = EntityState.Modified;
         }
 
         public Task<FrotaCargueiro> BuscaFrotaPorClasse(EClasseCargueiro classeCargueiro)

@@ -1,6 +1,6 @@
 
 
-namespace Cargueiro.Domain.Commands
+namespace Cargueiro.Domain.Application.Commands
 {
     public interface ICommand
     {

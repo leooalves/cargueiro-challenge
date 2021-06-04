@@ -1,6 +1,5 @@
-﻿using Cargueiro.Domain.Entidades.Comum;
-
-namespace Cargueiro.Domain.Repositorios
+﻿
+namespace Cargueiro.Domain.Comum
 {
     public interface IRepositorio<T> where T : IAggregateRoot
     {

@@ -2,7 +2,6 @@ using Cargueiro.Domain.Infra.Contexts;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
 
 namespace Cargueiro.Domain.Api
 {
@@ -34,5 +33,5 @@ namespace Cargueiro.Domain.Api
                 });
     }
 
-    
+
 }

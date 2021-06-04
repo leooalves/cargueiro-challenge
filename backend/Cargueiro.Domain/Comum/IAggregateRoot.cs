@@ -1,6 +1,6 @@
 ﻿
 
-namespace Cargueiro.Domain.Entidades.Comum
+namespace Cargueiro.Domain.Comum
 {
     public interface IAggregateRoot { }
 }

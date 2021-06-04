@@ -1,5 +1,5 @@
+using Cargueiro.Domain.Comum;
 using Cargueiro.Domain.Enums;
-using Cargueiro.Domain.Entidades.Comum;
 
 namespace Cargueiro.Domain.Entidades
 {

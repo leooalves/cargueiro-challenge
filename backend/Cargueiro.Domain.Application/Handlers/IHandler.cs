@@ -1,8 +1,8 @@
 
+using Cargueiro.Domain.Application.Commands;
 using System.Threading.Tasks;
-using Cargueiro.Domain.Commands;
 
-namespace Cargueiro.Domain.Handlers
+namespace Cargueiro.Domain.Application.Handlers
 {
     public interface IHandler<T> where T : ICommand
     {

@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cargueiro.Domain.Infra", "C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cargueiro.Domain.Tests", "Cargueiro.Domain.Tests\Cargueiro.Domain.Tests.csproj", "{BDE5894A-10E4-43CD-BFB6-DD4669A8D56A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cargueiro.Domain.Application", "Cargueiro.Domain.Application\Cargueiro.Domain.Application.csproj", "{7C6AF757-E6A7-485F-AE3F-C0BC3D542ECA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{BDE5894A-10E4-43CD-BFB6-DD4669A8D56A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDE5894A-10E4-43CD-BFB6-DD4669A8D56A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDE5894A-10E4-43CD-BFB6-DD4669A8D56A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C6AF757-E6A7-485F-AE3F-C0BC3D542ECA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C6AF757-E6A7-485F-AE3F-C0BC3D542ECA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C6AF757-E6A7-485F-AE3F-C0BC3D542ECA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C6AF757-E6A7-485F-AE3F-C0BC3D542ECA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

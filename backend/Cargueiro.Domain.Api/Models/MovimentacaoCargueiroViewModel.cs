@@ -1,5 +1,5 @@
-using System;
 using Cargueiro.Domain.Enums;
+using System;
 
 namespace Cargueiro.Domain.Api.Models
 {

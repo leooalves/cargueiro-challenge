@@ -1,10 +1,10 @@
 using AutoMapper;
 using Cargueiro.Domain.Api.Models;
+using Cargueiro.Domain.Application.Handlers;
+using Cargueiro.Domain.Application.Repositorios;
 using Cargueiro.Domain.Entidades;
-using Cargueiro.Domain.Handlers;
 using Cargueiro.Domain.Infra.Contexts;
 using Cargueiro.Domain.Infra.Repositorios;
-using Cargueiro.Domain.Repositorios;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;

@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <ProjectReference Include="..\Cargueiro.Domain.Application\Cargueiro.Domain.Application.csproj" />
     <ProjectReference Include="..\Cargueiro.Domain\Cargueiro.Domain.csproj" />
   </ItemGroup>
 

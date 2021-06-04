@@ -1,12 +1,13 @@
 
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using Cargueiro.Domain.Application.Repositorios;
 using Cargueiro.Domain.Entidades;
-using Cargueiro.Domain.Repositorios;
 using Cargueiro.Domain.Infra.Contexts;
-using System.Linq;
+using Cargueiro.Domain.Comum;
 using Microsoft.EntityFrameworkCore;
-using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
 
 namespace Cargueiro.Domain.Infra.Repositorios
 {
@@ -39,12 +40,12 @@ namespace Cargueiro.Domain.Infra.Repositorios
 
         public void Cria(MovimentacaoCargueiro movimentacao)
         {
-            _context.Add(movimentacao);            
+            _context.Add(movimentacao);
         }
 
         public void Atualiza(MovimentacaoCargueiro movimentacao)
         {
-            _context.Entry(movimentacao).State = EntityState.Modified;            
+            _context.Entry(movimentacao).State = EntityState.Modified;
         }
     }
 }

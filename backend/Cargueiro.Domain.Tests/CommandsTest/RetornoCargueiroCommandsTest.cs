@@ -1,8 +1,7 @@
 
-using System;
-using Cargueiro.Domain.Commands;
 using Cargueiro.Domain.Enums;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace Cargueiro.Domain.Tests.Commands
 {

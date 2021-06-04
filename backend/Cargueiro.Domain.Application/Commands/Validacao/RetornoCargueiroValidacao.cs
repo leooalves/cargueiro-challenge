@@ -1,7 +1,7 @@
-using System;
 using Flunt.Validations;
+using System;
 
-namespace Cargueiro.Domain.Commands.Validacao
+namespace Cargueiro.Domain.Application.Commands
 {
     public class RetornoCargueiroValidacao : Contract<RetornoCargueiroCommand>
     {

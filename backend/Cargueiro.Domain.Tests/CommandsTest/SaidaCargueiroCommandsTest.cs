@@ -1,8 +1,7 @@
 
-using System;
-using Cargueiro.Domain.Commands;
 using Cargueiro.Domain.Enums;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace Cargueiro.Domain.Tests.Commands
 {
@@ -23,7 +22,7 @@ namespace Cargueiro.Domain.Tests.Commands
         [TestMethod]
         public void Dada_uma_saida_antes_das_08_AM_ela_deve_ser_invalida()
         {
-            
+
             Assert.AreEqual(_saidaCargueiroAntes08.IsValid, false);
         }
 

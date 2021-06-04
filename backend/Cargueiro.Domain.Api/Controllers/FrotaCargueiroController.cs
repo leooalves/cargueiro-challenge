@@ -1,7 +1,7 @@
+using Cargueiro.Domain.Application.Repositorios;
+using Cargueiro.Domain.Entidades;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using Cargueiro.Domain.Entidades;
-using Cargueiro.Domain.Repositorios;
 
 namespace Cargueiro.Domain.Api.Controllers
 {
@@ -15,7 +15,7 @@ namespace Cargueiro.Domain.Api.Controllers
         {
             _frotaRepositorio = frotaCargueiroRepositorio;
         }
-    
+
         [HttpGet]
         [Route("")]
         public IEnumerable<FrotaCargueiro> Todas()

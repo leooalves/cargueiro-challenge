@@ -1,12 +1,12 @@
-using Microsoft.AspNetCore.Mvc;
-using Cargueiro.Domain.Commands;
-using Cargueiro.Domain.Handlers;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using Cargueiro.Domain.Entidades;
-using Cargueiro.Domain.Repositorios;
 using AutoMapper;
+using Cargueiro.Domain.Application.Commands;
+using Cargueiro.Domain.Application.Handlers;
+using Cargueiro.Domain.Application.Repositorios;
+using Cargueiro.Domain.Entidades;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Net;
+using System.Threading.Tasks;
 
 namespace Cargueiro.Domain.Api.Controllers
 {
@@ -29,16 +29,16 @@ namespace Cargueiro.Domain.Api.Controllers
 
         [HttpGet]
         [Route("todas")]
-        [ProducesResponseType(typeof(IEnumerable<MovimentacaoCargueiro>),(int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(IEnumerable<MovimentacaoCargueiro>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.Forbidden)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> TodasMovimentacoes()
-        {            
+        {
 
             return Ok(await _repositorio.RetornaTodasMovimentacoes());
         }
 
- 
+
         [HttpPost]
         [Route("saida/")]
         public async Task<IResposta> RegistraSaidaCargueiro(SaidaCargueiroCommand command)

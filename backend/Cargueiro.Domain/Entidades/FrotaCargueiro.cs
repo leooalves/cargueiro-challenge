@@ -1,6 +1,6 @@
-using System;
+using Cargueiro.Domain.Comum;
 using Cargueiro.Domain.Enums;
-using Cargueiro.Domain.Entidades.Comum;
+using System;
 
 namespace Cargueiro.Domain.Entidades
 {

@@ -1,9 +1,8 @@
-using System;
-using Cargueiro.Domain.Commands.Validacao;
 using Cargueiro.Domain.Enums;
 using Flunt.Notifications;
+using System;
 
-namespace Cargueiro.Domain.Commands
+namespace Cargueiro.Domain.Application.Commands
 {
     public class SaidaCargueiroCommand : Notifiable<Notification>, ICommand
     {
@@ -18,7 +17,7 @@ namespace Cargueiro.Domain.Commands
 
         public void Validar()
         {
-            this.AddNotifications(new SaidaCargueiroValidacao(this));
+            AddNotifications(new SaidaCargueiroValidacao(this));
         }
     }
 }

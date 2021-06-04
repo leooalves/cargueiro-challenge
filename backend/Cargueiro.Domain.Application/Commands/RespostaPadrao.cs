@@ -1,4 +1,4 @@
-namespace Cargueiro.Domain.Commands
+namespace Cargueiro.Domain.Application.Commands
 {
     public class RespostaPadrao : IResposta
     {
