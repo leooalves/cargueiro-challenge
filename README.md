@@ -76,10 +76,7 @@ Ao iniciar a aplicação, ela deverá gerar uma carga de dados automática e em 
 
 ## Informações Adicionais
 
-O desafio pode ter deixado algumas informações implícitas ou omitido alguns detalhes: isso faz parte da avaliação.
+O desafio pode ter deixado algumas informações implícitas ou omitido alguns detalhes.
 
 A especificação Open API para obter as informações dos minérios disponíveis por semana/mês/ano pode ser acessada em [https://fuct-smk186-code-challenge.cblx.com.br/swagger/](https://fuct-smk186-code-challenge.cblx.com.br/swagger/). O endereço para as requisições é o mesmo, mas sem o caminho `/swagger`.
 
-Por favor, encaminhe a resolução do desafio para o endereço [code-challenge@codeblox.com.br](mailto:code-challenge@codeblox.com.br). Também serão aceitos convites para repositórios privados (GitHub, BitBucket, etc.) e/ou arquivos compactados possuindo a solução, sendo preferível a primeira opção.
-
-Poderemos convidá-lo, em um segundo momento, para batermos um papo sobre a solução que você escreveu 😉.
