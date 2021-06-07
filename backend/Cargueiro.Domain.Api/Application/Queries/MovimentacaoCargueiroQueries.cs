@@ -18,27 +18,31 @@ namespace Cargueiro.Domain.Api.Application.Queries
             _context = context;
             _mapper = mapper;
         }
-        public async Task<IEnumerable<MovimentacaoCargueiroViewModel>> RetornaMovimentacoesPorPeriodo(int ano, int mes)
+
+        private async Task<IEnumerable<MovimentacaoCargueiroViewModel>> MovimentacoesPorPeriodo(int ano, int mes)
         {
             List<MovimentacaoCargueiro> movimentacoes = await _context.MovimentacoesCargueiros
-              //  .Where(x => x.DataRetorno != null && x.DataRetorno.Value.Year == ano && x.DataRetorno.Value.Month == mes)
+            //    .Where(x => x.DataRetorno != null && x.DataRetorno.Value.Year == ano && x.DataRetorno.Value.Month == mes)
                 .ToListAsync();
 
             List<MovimentacaoCargueiroViewModel> viewModel = _mapper
-                .Map<List<MovimentacaoCargueiro>,List<MovimentacaoCargueiroViewModel>>(movimentacoes);
-            return viewModel;            
-   
+                .Map<List<MovimentacaoCargueiro>, List<MovimentacaoCargueiroViewModel>>(movimentacoes);
+            return viewModel;
+
         }
 
-        public async Task<MovimentacaoCargueiroViewModel> RetornaMovimentacao(string id)
+        public async Task<ItensPaginados<MovimentacaoCargueiroViewModel>> MovimentacoesPorPeriodoPaginado(int ano, int mes, int numeroDaPagina = 1, int tamanhoDaPagina = 10 )
         {
-            var movimentacao = await _context.MovimentacoesCargueiros
-                .Where(x => x.Id.ToString() == id).FirstOrDefaultAsync();
-                
 
-            var viewModel = _mapper
-                .Map<MovimentacaoCargueiroViewModel>(movimentacao);
-            return viewModel;
+            var movimentacoes = await MovimentacoesPorPeriodo(ano, mes);
+
+            var quantidadeTotalItems = movimentacoes.Count();
+
+            movimentacoes = movimentacoes.Skip(tamanhoDaPagina * (numeroDaPagina-1)).Take((tamanhoDaPagina));
+
+            var itensPaginados = new ItensPaginados<MovimentacaoCargueiroViewModel>(numeroDaPagina, tamanhoDaPagina, quantidadeTotalItems, movimentacoes);
+
+            return itensPaginados;
         }
     }
 }

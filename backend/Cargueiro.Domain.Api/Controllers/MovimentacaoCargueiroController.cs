@@ -8,10 +8,12 @@ using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 using Cargueiro.Domain.Api.Application.Queries;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace Cargueiro.Domain.Api.Controllers
 {
     [ApiController]
+    [Produces("application/json")]
     [Route("v1/cargueiro/movimentacao")]
     public class MovimentacaoCargueiroController : ControllerBase
     {
@@ -22,8 +24,7 @@ namespace Cargueiro.Domain.Api.Controllers
         public MovimentacaoCargueiroController(
             MovimentacaoCargueiroHandler handler,
             IMovimentacaoCargueiroRepositorio repositorio,
-            MovimentacaoCargueiroQueries queries,
-            IMapper mapper)
+            MovimentacaoCargueiroQueries queries)
         {
             _handler = handler;
             _repositorio = repositorio;            
@@ -42,30 +43,38 @@ namespace Cargueiro.Domain.Api.Controllers
         }
 
         [HttpGet]
-        [Route("teste")]
-        [ProducesResponseType(typeof(IEnumerable<MovimentacaoCargueiroViewModel>), (int)HttpStatusCode.OK)]
-        [ProducesResponseType((int)HttpStatusCode.Forbidden)]
+        [Route("")]
+        [ProducesResponseType(typeof(ItensPaginados<MovimentacaoCargueiroViewModel>), (int)HttpStatusCode.OK)]        
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
-        public async Task<IActionResult> Teste()
+        public async Task<IActionResult> MovimentacoesPorPeriodo([BindRequired] int ano, [BindRequired] int mes, int pagina = 1)
         {
-            var movimentacoes = await _queries.RetornaMovimentacoesPorPeriodo(1, 1);
-            return Ok(movimentacoes);
-            //return Ok(await _repositorio.RetornaTodasMovimentacoes());
+            var movimentacoes = await _queries.MovimentacoesPorPeriodoPaginado(ano,mes,pagina);
+            return Ok(movimentacoes);            
         }
       
 
         [HttpPost]
-        [Route("saida/")]
-        public async Task<IResposta> RegistraSaidaCargueiro(SaidaCargueiroCommand command)
+        [Route("saida")]
+        [ProducesResponseType(typeof(RespostaPadrao),(int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(RespostaPadrao), (int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> RegistraSaidaCargueiro(SaidaCargueiroCommand command)
         {
-            return await _handler.Handle(command);
+            RespostaPadrao resposta = (RespostaPadrao)await _handler.Handle(command);
+            if (resposta.Sucesso)
+                return Ok(resposta);
+            return BadRequest(resposta);            
         }
 
         [HttpPost]
-        [Route("retorno/")]
-        public async Task<IResposta> RegistraRetornoCargueiro(RetornoCargueiroCommand command)
+        [Route("retorno")]
+        [ProducesResponseType(typeof(RespostaPadrao), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(RespostaPadrao), (int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> RegistraRetornoCargueiro(RetornoCargueiroCommand command)
         {
-            return await _handler.Handle(command);
+            RespostaPadrao resposta = (RespostaPadrao)await _handler.Handle(command);
+            if (resposta.Sucesso)
+                return Ok(resposta);
+            return BadRequest(resposta);
         }
     }
 }

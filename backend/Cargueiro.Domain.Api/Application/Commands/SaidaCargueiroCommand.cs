@@ -12,8 +12,8 @@ namespace Cargueiro.Domain.Api.Application.Commands
             DataSaida = dataSaida;
         }
 
-        public EClasseCargueiro ClasseCargueiro { get; private set; }
-        public DateTime DataSaida { get; private set; }
+        public EClasseCargueiro ClasseCargueiro { get; set; }
+        public DateTime DataSaida { get; set; }
 
         public void Validar()
         {
