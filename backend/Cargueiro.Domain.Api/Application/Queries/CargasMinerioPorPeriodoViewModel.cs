@@ -7,6 +7,6 @@ namespace Cargueiro.Domain.Api.Application.Queries
     {
         public ETipoMineral TipoMineralObtido { get; set; }
         public decimal QtdMaterialObtidoEmQuilos { get; set; }
-        public decimal ValorTotalMinerio { get; set; }
+        public decimal ValorTotalMineralEmDolares { get; set; }
     }
 }

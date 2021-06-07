@@ -40,6 +40,7 @@ namespace Cargueiro.Domain.Api
             services.AddScoped<MovimentacaoCargueiroHandler, MovimentacaoCargueiroHandler>();
             services.AddScoped<MovimentacaoCargueiroQueries, MovimentacaoCargueiroQueries>();
             services.AddScoped<ServicoCalcularValorCarga, ServicoCalcularValorCarga>();
+            services.AddScoped<IConfiguracaoCargueiroRepositorio, ConfiguracaoCargueiroRepositorio>();
             services.AddScoped<IFrotaCargueiroRepositorio, FrotaCargueiroRepositorio>();
             services.AddScoped<IMineralRepositorio, MineralRepositorio>();
             services.AddScoped<IMovimentacaoCargueiroRepositorio, MovimentacaoCargueiroRepositorio>();

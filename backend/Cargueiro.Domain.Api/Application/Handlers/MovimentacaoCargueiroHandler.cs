@@ -10,12 +10,15 @@ namespace Cargueiro.Domain.Api.Application.Handlers
     {
         private readonly IFrotaCargueiroRepositorio _frotaCargueiroRepositorio;
         private readonly IMovimentacaoCargueiroRepositorio _movimentacaoCargueiroRepositorio;
+        private readonly IConfiguracaoCargueiroRepositorio _configuracaoCargueiroRepositorio;
         public MovimentacaoCargueiroHandler(
             IFrotaCargueiroRepositorio frotaCargueiroRepositorio,
-            IMovimentacaoCargueiroRepositorio movimentacaoCargueiroRepositorio)
+            IMovimentacaoCargueiroRepositorio movimentacaoCargueiroRepositorio,
+            IConfiguracaoCargueiroRepositorio configuracaoCargueiroRepositorio)
         {
             _frotaCargueiroRepositorio = frotaCargueiroRepositorio;
             _movimentacaoCargueiroRepositorio = movimentacaoCargueiroRepositorio;
+            _configuracaoCargueiroRepositorio = configuracaoCargueiroRepositorio;
         }
 
         public async Task<IResposta> Handle(SaidaCargueiroCommand saidaCargueiroCommand)
@@ -69,6 +72,14 @@ namespace Cargueiro.Domain.Api.Application.Handlers
 
             if (!movimentacaoCargueiro.IsValid)
                 return new RespostaPadrao { Sucesso = false, Mensagem = "Requisicao Incorreta", Dados = movimentacaoCargueiro.Notifications };
+
+            //verifica as informações de retorno estão de acordo com o parametrizado para a classe daquele cargueiro
+            var configuracaoCargueiro = await _configuracaoCargueiroRepositorio.RetornaCargueiroPorClasse(retornoCargueiroCommand.ClasseCargueiro);
+            if(retornoCargueiroCommand.QtdMaterialObtidoEmQuilos > configuracaoCargueiro.CapacidadeEmQuilos )
+                return new RespostaPadrao { Sucesso = false, Mensagem = "Cargueiro dessa classe não aguenta essa capacidade de materiais" };
+
+            if(!configuracaoCargueiro.MineraisCompativeis.Contains(retornoCargueiroCommand.TipoMineralObtido))
+                return new RespostaPadrao { Sucesso = false, Mensagem = "Cargueiro dessa classe não é compatível com esse mineral" };     
 
             //persiste no bd informando o retorno
             _movimentacaoCargueiroRepositorio.Atualiza(movimentacaoCargueiro);

@@ -1,12 +1,13 @@
 using Cargueiro.Domain.Comum;
 using Cargueiro.Domain.Enums;
+using System.Collections.Generic;
 
 namespace Cargueiro.Domain.Entidades
 {
-    public class Cargueiro : Entidade
+    public class ConfiguracaoCargueiro : Entidade
     {
-        public EClasseCargueiro Classe { get; private set; }
-        public decimal CapacidadeEmQuilos { get; private set; }
-        public string MineraisCompativeis { get; private set; }
+        public EClasseCargueiro Classe { get; set; }
+        public decimal CapacidadeEmQuilos { get; set; }
+        public List<ETipoMineral> MineraisCompativeis { get; set; }
     }
 }

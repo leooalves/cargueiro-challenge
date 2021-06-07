@@ -39,13 +39,13 @@ namespace Cargueiro.Domain.Api.Application.Queries
             return viewModel;
         }
 
-        public async Task<ItensPaginados<MovimentacaoCargueiroViewModel>> MovimentacoesPorPeriodoPaginado(int ano, int mes, int numeroDaPagina = 1, int tamanhoDaPagina = 10 )
+        public async Task<ItensPaginados<MovimentacaoCargueiroViewModel>> MovimentacoesPorPeriodoPaginado(int ano, int mes, int numeroDaPagina = 1, int tamanhoDaPagina = 10)
         {
             var movimentacoes = await MovimentacoesPorPeriodo(ano, mes);
 
             var quantidadeTotalItems = movimentacoes.Count();
 
-            movimentacoes = movimentacoes.Skip(tamanhoDaPagina * (numeroDaPagina-1)).Take((tamanhoDaPagina));
+            movimentacoes = movimentacoes.Skip(tamanhoDaPagina * (numeroDaPagina - 1)).Take((tamanhoDaPagina));
 
             var itensPaginados = new ItensPaginados<MovimentacaoCargueiroViewModel>(numeroDaPagina, tamanhoDaPagina, quantidadeTotalItems, movimentacoes);
 
@@ -56,15 +56,16 @@ namespace Cargueiro.Domain.Api.Application.Queries
         {
             var movimentacoes = await MovimentacoesPorPeriodo(ano, mes);
 
-            List<CargasMinerioPorPeriodoViewModel> cargas = movimentacoes.GroupBy(x => x.TipoMineralObtido).Select(y => new CargasMinerioPorPeriodoViewModel
-            {
-                TipoMineralObtido = y.Select(x => x.TipoMineralObtido).FirstOrDefault(),
-                QtdMaterialObtidoEmQuilos = y.Sum(x=> x.QtdMaterialObtidoEmQuilos),
-                ValorTotalMinerio = y.Sum(x=> x.ValorTotalCargaEmDolares)
-            }).ToList();
+            List<CargasMinerioPorPeriodoViewModel> cargas = movimentacoes
+                .GroupBy(x => x.TipoMineralObtido)
+                .Select(y => new CargasMinerioPorPeriodoViewModel
+                {
+                    TipoMineralObtido = y.Select(x => x.TipoMineralObtido).FirstOrDefault(),
+                    QtdMaterialObtidoEmQuilos = y.Sum(x => x.QtdMaterialObtidoEmQuilos),
+                    ValorTotalMineralEmDolares = y.Sum(x => x.ValorTotalCargaEmDolares)
+                })
+                .ToList();
 
-         
-            
             return cargas;
         }
     }
