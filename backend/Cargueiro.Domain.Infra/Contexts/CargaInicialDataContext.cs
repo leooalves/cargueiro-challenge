@@ -24,9 +24,9 @@ namespace Cargueiro.Domain.Infra.Contexts
             return new List<FrotaCargueiro>()
                 {
                     new FrotaCargueiro(EClasseCargueiro.Classe_I, 15, 0, DateTime.Now),
-                    new FrotaCargueiro(EClasseCargueiro.Classe_I, 10, 0, DateTime.Now),
-                    new FrotaCargueiro(EClasseCargueiro.Classe_I, 3, 0, DateTime.Now),
-                    new FrotaCargueiro(EClasseCargueiro.Classe_I, 2, 0, DateTime.Now)
+                    new FrotaCargueiro(EClasseCargueiro.Classe_II, 10, 0, DateTime.Now),
+                    new FrotaCargueiro(EClasseCargueiro.Classe_III, 3, 0, DateTime.Now),
+                    new FrotaCargueiro(EClasseCargueiro.Classe_IV, 2, 0, DateTime.Now)
                 };
         }
 

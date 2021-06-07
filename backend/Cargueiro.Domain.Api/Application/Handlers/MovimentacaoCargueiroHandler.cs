@@ -56,7 +56,7 @@ namespace Cargueiro.Domain.Api.Application.Handlers
                 return new RespostaPadrao { Sucesso = false, Mensagem = "Requisicao Incorreta", Dados = retornoCargueiroCommand.Notifications };
 
             //verifica se tem cargueiro desse tipo para retornar        
-            var frotaCargueiro = await _frotaCargueiroRepositorio.BuscaFrotaPorClasse(EClasseCargueiro.Classe_I);
+            var frotaCargueiro = await _frotaCargueiroRepositorio.BuscaFrotaPorClasse(retornoCargueiroCommand.ClasseCargueiro);
             if (frotaCargueiro.NaoExisteCargueiroEmViagem)
                 return new RespostaPadrao { Sucesso = false, Mensagem = "Não há cargueiros dessa classe em viagem" };
 

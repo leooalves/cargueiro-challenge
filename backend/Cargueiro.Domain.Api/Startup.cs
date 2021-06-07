@@ -13,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Cargueiro.Domain.Api.Application.Queries;
 using System.Collections.Generic;
+using Cargueiro.Domain.Api.Application.Servicos;
 
 namespace Cargueiro.Domain.Api
 {
@@ -38,13 +39,15 @@ namespace Cargueiro.Domain.Api
             services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("Database"));
             services.AddScoped<MovimentacaoCargueiroHandler, MovimentacaoCargueiroHandler>();
             services.AddScoped<MovimentacaoCargueiroQueries, MovimentacaoCargueiroQueries>();
+            services.AddScoped<ServicoCalcularValorCarga, ServicoCalcularValorCarga>();
             services.AddScoped<IFrotaCargueiroRepositorio, FrotaCargueiroRepositorio>();
+            services.AddScoped<IMineralRepositorio, MineralRepositorio>();
             services.AddScoped<IMovimentacaoCargueiroRepositorio, MovimentacaoCargueiroRepositorio>();
 
             var config = new AutoMapper.MapperConfiguration(cfg =>
            {
                cfg.CreateMap<MovimentacaoCargueiro, MovimentacaoCargueiroViewModel>();
-               cfg.CreateMap<MovimentacaoCargueiroViewModel, MovimentacaoCargueiro>();                            
+               cfg.CreateMap<MovimentacaoCargueiroViewModel, MovimentacaoCargueiro>();
            });
             IMapper mapper = config.CreateMapper();
             services.AddSingleton(mapper);
@@ -60,7 +63,10 @@ namespace Cargueiro.Domain.Api
             }
 
             app.UseSwagger();
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Cargueiro Api v1"));
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Cargueiro Api v1");                
+            });
 
             app.UseHttpsRedirection();
 

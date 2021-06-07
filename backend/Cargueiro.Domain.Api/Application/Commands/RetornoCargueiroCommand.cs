@@ -14,11 +14,11 @@ namespace Cargueiro.Domain.Api.Application.Commands
             QtdMaterialObtidoEmQuilos = qtdMaterialObtidoEmQuilos;
         }
 
-        public string Id { get; private set; }
-        public EClasseCargueiro ClasseCargueiro { get; private set; }
-        public DateTime DataRetorno { get; private set; }
-        public ETipoMineral TipoMineralObtido { get; private set; }
-        public decimal QtdMaterialObtidoEmQuilos { get; private set; }
+        public string Id { get; set; }
+        public EClasseCargueiro ClasseCargueiro { get; set; }
+        public DateTime DataRetorno { get; set; }
+        public ETipoMineral TipoMineralObtido { get; set; }
+        public decimal QtdMaterialObtidoEmQuilos { get; set; }
 
         public void Validar()
         {

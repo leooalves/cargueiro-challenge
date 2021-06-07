@@ -33,8 +33,7 @@ namespace Cargueiro.Domain.Api.Controllers
 
         [HttpGet]
         [Route("todas")]
-        [ProducesResponseType(typeof(IEnumerable<MovimentacaoCargueiro>), (int)HttpStatusCode.OK)]
-        [ProducesResponseType((int)HttpStatusCode.Forbidden)]
+        [ProducesResponseType(typeof(IEnumerable<MovimentacaoCargueiro>), (int)HttpStatusCode.OK)]        
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> TodasMovimentacoes()
         {
@@ -43,7 +42,7 @@ namespace Cargueiro.Domain.Api.Controllers
         }
 
         [HttpGet]
-        [Route("")]
+        [Route("retorno")]
         [ProducesResponseType(typeof(ItensPaginados<MovimentacaoCargueiroViewModel>), (int)HttpStatusCode.OK)]        
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> MovimentacoesPorPeriodo([BindRequired] int ano, [BindRequired] int mes, int pagina = 1)
@@ -51,7 +50,17 @@ namespace Cargueiro.Domain.Api.Controllers
             var movimentacoes = await _queries.MovimentacoesPorPeriodoPaginado(ano,mes,pagina);
             return Ok(movimentacoes);            
         }
-      
+
+
+        [HttpGet]
+        [Route("retorno/minerio")]
+        [ProducesResponseType(typeof(IEnumerable<CargasMinerioPorPeriodoViewModel>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> MovimentacoesPorPeriodoPorMinerio([BindRequired] int ano, [BindRequired] int mes)
+        {
+            var movimentacoes = await _queries.MovimentacoesPorMinerioPorPeriodo(ano, mes);
+            return Ok(movimentacoes);
+        }
 
         [HttpPost]
         [Route("saida")]
